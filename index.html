@@ -1,59 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Full Screen Image with Zoom and Audio</title>
+<title>Full Screen Video</title>
 <style>
 body {
   margin: 0;
   overflow: hidden;
 }
 
-img {
+video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1;
-}
-
-audio {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  z-index: 1;
 }
 </style>
 </head>
 <body>
 
-<img id="myImage" src="scary.jpeg" alt="Full Screen Image">
-<audio id="myAudio" controls loop autoplay muted>
-  <source src="scarywtf.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+<video id="myVideo" loop autoplay>
+  <source src="scarywtf.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 <script>
-const img = document.getElementById("myImage");
-let scale = 1;
-let direction = 1;
-
-function animateZoom() {
-  scale += direction * 0.05; // Increased zoom speed (was 0.01)
-  if (scale > 1.2) direction = -1;
-  else if (scale < 0.8) direction = 1;
-
-  img.style.transform = `scale(${scale})`;
-  requestAnimationFrame(animateZoom);
-}
-
-animateZoom();
-
-// Attempt to unmute (may be blocked by browser)
-setTimeout(() => {
-  const audio = document.getElementById('myAudio');
-  audio.muted = false;
-}, 500);
+document.addEventListener("DOMContentLoaded", function() {
+  const video = document.getElementById("myVideo");
+  video.play();
+});
 </script>
 
 </body>
